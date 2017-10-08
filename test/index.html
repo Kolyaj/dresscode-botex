@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Botex tests</title>
+    <link href="/external/mocha.css" rel="stylesheet" />
+</head>
+<body>
+<div id="mocha"></div>
+
+<script src="/external/jquery.min.js"></script>
+<script src="/external/chai.js"></script>
+<script src="/external/mocha.js"></script>
+
+<script>mocha.setup('bdd')</script>
+
+<script src="/tests/Botex.JSON2VDOM.js"></script>
+
+<script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+</script>
+</body>
+</html>
+
