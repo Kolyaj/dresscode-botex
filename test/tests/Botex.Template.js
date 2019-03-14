@@ -11,7 +11,7 @@
         });
 
         it('Array', function() {
-            chai.assert.equal(new Botex.Template({content: ['string', 5, true, false]}), 'string5');
+            chai.assert.equal(new Botex.Template({content: ['string', 5, true, false]}), 'string5truefalse');
         });
 
         it('Escaped string', function() {
