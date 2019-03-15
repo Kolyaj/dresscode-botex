@@ -11,3 +11,5 @@ new Samples.PanelWithHelloWorld({
 }).renderTo(document.body);
 
 new Samples.Zen().renderTo(document.body);
+
+new Samples.DataBinders().renderTo(document.body);
