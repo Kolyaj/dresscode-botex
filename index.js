@@ -1,7 +1,6 @@
 var {DressCode} = require('dresscodejs');
 
-exports.compileCSS = async function(fname, dresscode) {
-    dresscode = dresscode || new DressCode(true);
-    var code = await dresscode.compile(fname, {css: true});
-    return new Function('', `(function(){${code})();return typeof Botex !== 'undefined' && Botex.CSS && Botex.CSS.compile(); || ''`)();
+exports.compileCSS = async function(fname) {
+    var code = await new DressCode(true).compile(fname, {css: true, debug: true});
+    return new Function('module, exports', `${code};return typeof Botex !== 'undefined' && Botex.CSS && Botex.CSS.compile() || ''`)({}, {});
 };

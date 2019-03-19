@@ -40,7 +40,9 @@ Samples.DataBinders = Bricks.inherit(Botex.Widget, {
             content: [
                 'Counter is ',
                 Botex.zen('a[href=#]', this._updater(function() {
-                    return this._counter;
+                    return new Samples.Number({
+                        number: this._counter
+                    });
                 })),
                 '.'
             ]
