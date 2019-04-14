@@ -14,34 +14,31 @@ Samples.DataBinders = Bricks.inherit(Botex.Widget, {
     constructor: function() {
         Samples.DataBinders.superclass.constructor.apply(this, arguments);
         this._counter = 0;
-    },
-
-    renderTo: function() {
-        Samples.DataBinders.superclass.renderTo.apply(this, arguments);
+        this._mutableCounter = new Botex.Mutable(this._counter);
         this._on('click', this.$$_onClick);
     },
 
 
     _render: function() {
         return {
-            className: ['$$', this._updater(function() {
-                return ['$$__cls1', '$$__cls2'][this._counter % 2];
+            className: ['$$', this._mutableCounter.when(function(counter) {
+                return ['$$__cls1', '$$__cls2'][counter % 2];
             })],
             attrs: {
-                title: this._updater(function() {
-                    return 'Counter: ' + this._counter;
+                title: this._mutableCounter.when(function(counter) {
+                    return 'Counter: ' + counter;
                 })
             },
             style: {
-                'font-size': this._updater(function() {
-                    return this._counter + 'px';
+                'font-size': this._mutableCounter.when(function(counter) {
+                    return counter + 'px';
                 })
             },
             content: [
                 'Counter is ',
-                Botex.zen('a[href=#]', this._updater(function() {
+                Botex.zen('a[href=#]', this._mutableCounter.when(function(counter) {
                     return new Samples.Number({
-                        number: this._counter
+                        number: counter
                     });
                 })),
                 '.'
@@ -52,6 +49,6 @@ Samples.DataBinders = Bricks.inherit(Botex.Widget, {
 
     $$_onClick: function() {
         this._counter++;
-        this._update();
+        this._mutableCounter.setValue(this._counter);
     }
 });

@@ -235,22 +235,21 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
                         this._getEl('el').click();
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getEl('el').click();
                     },
 
                     _render: function() {
                         return {
                             content: new Botex.Tag({
-                                className: ['el', this._updater(function() {
-                                    return this._touched ? 'elem' : '';
+                                className: ['el', this._touched.when(function(touched) {
+                                    return touched ? 'elem' : '';
                                 })]
                             })
                         };
@@ -267,22 +266,21 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
                         this._getEl('el').click();
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getEl('el').click();
                     },
 
                     _render: function() {
                         return {
                             content: new Botex.Tag({
-                                className: ['el', this._updater(function() {
-                                    return this._touched ? '' : 'elem';
+                                className: ['el', this._touched.when(function(touched) {
+                                    return touched ? '' : 'elem';
                                 })]
                             })
                         };
@@ -381,21 +379,20 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('mod', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
                         this._getEl().click();
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getEl().click();
                     },
 
                     _render: function() {
                         return {
-                            className: this._updater(function() {
-                                return this._touched ? 'mod' : '';
+                            className: this._touched.when(function(touched) {
+                                return touched ? 'mod' : '';
                             })
                         };
                     }
@@ -411,21 +408,20 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('mod', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
                         this._getEl().click();
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getEl().click();
                     },
 
                     _render: function() {
                         return {
-                            className: this._updater(function() {
-                                return this._touched ? '' : 'mod';
+                            className: this._touched.when(function(touched) {
+                                return touched ? '' : 'mod';
                             })
                         };
                     }
@@ -441,20 +437,19 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
-                            content: this._updater(function() {
-                                return this._touched ? Botex.zen('.elem') : null;
+                            content: this._touched.when(function(touched) {
+                                return touched ? Botex.zen('.elem') : null;
                             })
                         };
                     }
@@ -475,20 +470,19 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = false;
+                        this._touched = new Botex.Mutable(false);
                         this._on('child', 'event', this._getParams().callback);
                     },
 
                     touch: function() {
-                        this._touched = true;
-                        this._update();
+                        this._touched.setValue(true);
                         this._getChild('child').touch();
                     },
 
                     _render: function() {
                         return {
-                            content: this._updater(function() {
-                                if (this._touched) {
+                            content: this._touched.when(function(touched) {
+                                if (touched) {
                                     return new Child({
                                         as: 'child'
                                     });
