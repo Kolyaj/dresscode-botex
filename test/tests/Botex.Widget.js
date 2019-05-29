@@ -6,7 +6,7 @@
             var Child = Bricks.inherit(Botex.Widget);
             var Widget = Bricks.inherit(Botex.Widget, {
                 getChild: function() {
-                    return this._getChild('child');
+                    return this.getEl('child');
                 },
 
                 _render: function() {
@@ -18,27 +18,7 @@
                 }
             });
             var widget = new Widget();
-            widget.renderTo(document.body);
-            chai.assert.instanceOf(widget.getChild(), Child);
-        });
-
-        it('Доступ к дочернему виджету по одному из имён', function() {
-            var Child = Bricks.inherit(Botex.Widget);
-            var Widget = Bricks.inherit(Botex.Widget, {
-                getChild: function() {
-                    return this._getChild('child');
-                },
-
-                _render: function() {
-                    return {
-                        content: new Child({
-                            as: ['child', 'another']
-                        })
-                    };
-                }
-            });
-            var widget = new Widget();
-            widget.renderTo(document.body);
+            widget.mount(document.body);
             chai.assert.instanceOf(widget.getChild(), Child);
         });
 
@@ -46,7 +26,7 @@
             var Child = Bricks.inherit(Botex.Widget);
             var Widget = Bricks.inherit(Botex.Widget, {
                 getChild: function() {
-                    return this._getChild('child');
+                    return this.getEl('child');
                 },
 
                 _render: function() {
@@ -60,7 +40,7 @@
                 }
             });
             var widget = new Widget();
-            widget.renderTo(document.body);
+            widget.mount(document.body);
             chai.assert.instanceOf(widget.getChild(), Child);
         });
 
@@ -70,7 +50,7 @@
                 var widget = new widgetCtor({
                     callback: callback
                 });
-                widget.renderTo(document.body);
+                widget.mount(document.body);
                 widget.touch();
                 chai.assert.isOk(callback.calledOnce);
                 widget.destroy();
@@ -87,12 +67,12 @@
                     },
 
                     touch: function() {
-                        this._getEl('elem').click();
+                        this.getEl('el').click();
                     },
 
                     _render: function() {
                         return {
-                            content: Botex.zen('.elem')
+                            content: Botex.zen('el:.elem')
                         };
                     }
                 });
@@ -117,7 +97,7 @@
                     },
 
                     touch: function() {
-                        this._getChild('child').touch();
+                        this.getEl('child').touch();
                     },
 
                     _render: function() {
@@ -143,13 +123,13 @@
                     },
 
                     touch: function() {
-                        this._getEl('elem').click();
+                        this.getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
                             content: new Botex.Widget({
-                                content: Botex.zen('.elem')
+                                content: Botex.zen('elem:.elem')
                             })
                         };
                     }
@@ -175,7 +155,7 @@
                     },
 
                     touch: function() {
-                        this._getChild('child').touch();
+                        this.getEl('child').touch();
                     },
 
                     _render: function() {
@@ -209,7 +189,7 @@
                     },
 
                     touch: function() {
-                        this._getChild('child').touch();
+                        this.getEl('child').touch();
                     },
 
                     _render: function() {
@@ -240,17 +220,18 @@
                     },
 
                     touch: function() {
-                        this._getEl('el').click();
+                        this.getEl('el').click();
                         this._touched.setValue(true);
-                        this._getEl('el').click();
+                        this.getEl('el').click();
                     },
 
                     _render: function() {
                         return {
                             content: new Botex.Tag({
-                                className: ['el', this._touched.when(function(touched) {
+                                as: 'el',
+                                className: this._touched.when(function(touched) {
                                     return touched ? 'elem' : '';
-                                })]
+                                })
                             })
                         };
                     }
@@ -271,17 +252,18 @@
                     },
 
                     touch: function() {
-                        this._getEl('el').click();
+                        this.getEl('el').click();
                         this._touched.setValue(true);
-                        this._getEl('el').click();
+                        this.getEl('el').click();
                     },
 
                     _render: function() {
                         return {
                             content: new Botex.Tag({
-                                className: ['el', this._touched.when(function(touched) {
+                                as: 'el',
+                                className: this._touched.when(function(touched) {
                                     return touched ? '' : 'elem';
-                                })]
+                                })
                             })
                         };
                     }
@@ -301,7 +283,7 @@
                     },
 
                     touch: function() {
-                        this._getEl().click();
+                        this.getEl().click();
                     }
                 });
                 createEventTest(Widget);
@@ -332,7 +314,7 @@
                     },
 
                     touch: function() {
-                        this._getChild('child').getEl().click();
+                        this.getEl('child').getEl().click();
                     },
 
                     _render: function($) {
@@ -359,7 +341,7 @@
                     },
 
                     touch: function() {
-                        this._getEl().click();
+                        this.getEl().click();
                     },
 
                     _render: function() {
@@ -384,9 +366,9 @@
                     },
 
                     touch: function() {
-                        this._getEl().click();
+                        this.getEl().click();
                         this._touched.setValue(true);
-                        this._getEl().click();
+                        this.getEl().click();
                     },
 
                     _render: function() {
@@ -413,9 +395,9 @@
                     },
 
                     touch: function() {
-                        this._getEl().click();
+                        this.getEl().click();
                         this._touched.setValue(true);
-                        this._getEl().click();
+                        this.getEl().click();
                     },
 
                     _render: function() {
@@ -443,13 +425,13 @@
 
                     touch: function() {
                         this._touched.setValue(true);
-                        this._getEl('elem').click();
+                        this.getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
                             content: this._touched.when(function(touched) {
-                                return touched ? Botex.zen('.elem') : null;
+                                return touched ? Botex.zen('elem:.elem') : null;
                             })
                         };
                     }
@@ -476,7 +458,7 @@
 
                     touch: function() {
                         this._touched.setValue(true);
-                        this._getChild('child').touch();
+                        this.getEl('child').touch();
                     },
 
                     _render: function() {
@@ -508,19 +490,19 @@
                     },
 
                     touch: function() {
-                        this._getEl('elem2').click();
+                        this.getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
-                            content: Botex.zen('.elem1', Botex.zen('.elem2'))
+                            content: Botex.zen('.elem1', Botex.zen('elem:.elem2'))
                         };
                     }
                 });
                 createEventTest(Widget);
             });
 
-            it('Снял обработчик с DOM-элемента внутри виджета после рендеринга', function() {
+            it('Вешаем обработчик события на DOM-элемент, созданный в MutableArray', function() {
                 var Widget = Bricks.inherit(Botex.Widget, {
                     params: {
                         callback: null
@@ -528,61 +510,84 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._on('elem1', 'click', this._getParams().callback);
-                        this._on('elem2', 'click', this._getParams().callback);
+                        this._data = new Botex.MutableArray();
+                        this._on('elem', 'click', this._getParams().callback);
                     },
 
                     touch: function() {
-                        this._un('elem1', 'click', this._getParams().callback);
-                        this._getEl('elem2').click();
+                        this._data.push('foo');
+                        this.getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
-                            content: Botex.zen('.elem1', Botex.zen('.elem2'))
+                            content: this._data.transform(function(item) {
+                                return Botex.zen('elem:.elem', item);
+                            }, this)
                         };
                     }
                 });
                 createEventTest(Widget);
             });
 
-            it('Вешаем событие на уже созданный элемент', function() {
+            it('Вешаем обработчик события на DOM-элемент внутри DOM-элемента, созданного в MutableArray', function() {
                 var Widget = Bricks.inherit(Botex.Widget, {
                     params: {
                         callback: null
                     },
 
-                    touch: function() {
+                    constructor: function() {
+                        Widget.superclass.constructor.apply(this, arguments);
+                        this._data = new Botex.MutableArray();
                         this._on('elem', 'click', this._getParams().callback);
-                        this._getEl('elem').click();
+                    },
+
+                    touch: function() {
+                        this._data.push('foo');
+                        this.getEl('elem').click();
                     },
 
                     _render: function() {
                         return {
-                            content: Botex.zen('.elem')
+                            content: this._data.transform(function(item) {
+                                return Botex.zen('div', Botex.zen('elem:.elem', item));
+                            }, this)
                         };
                     }
                 });
                 createEventTest(Widget);
             });
 
-            it('Вешаем событие на несколько уже созданных элементов с одним классом', function() {
+            it('Вешаем обработчик события на Widget, созданный в MutableArray', function() {
+                var Child = Bricks.inherit(Botex.Widget, {
+                    touch: function() {
+                        this._fireEvent('event');
+                    }
+                });
                 var Widget = Bricks.inherit(Botex.Widget, {
                     params: {
                         callback: null
                     },
 
+                    constructor: function() {
+                        Widget.superclass.constructor.apply(this, arguments);
+                        this._data = new Botex.MutableArray();
+                        this._on('child', 'event', this._getParams().callback);
+                    },
+
                     touch: function() {
-                        this._on('elem', 'click', this._getParams().callback);
-                        this._getEl('elem2').click();
+                        this._data.push('foo');
+                        this.getEl('child').touch();
                     },
 
                     _render: function() {
                         return {
-                            content: [
-                                Botex.zen('.elem.elem1'),
-                                Botex.zen('.elem.elem2')
-                            ]
+                            content: this._data.transform(function(item) {
+                                return new Child({
+                                    as: 'child',
+                                    content: item
+                                });
+                            }, this)
                         };
                     }
                 });

@@ -1,15 +1,22 @@
 new Samples.HelloWorld({
     name: 'Kolyaj'
-}).renderTo(document.body);
+}).mount(document.body);
 
 new Samples.BoldHelloWorld({
     name: 'BoldKolyaj'
-}).renderTo(document.body);
+}).mount(document.body);
 
 new Samples.PanelWithHelloWorld({
     name: 'Kolyaj'
-}).renderTo(document.body);
+}).mount(document.body);
 
-new Samples.Zen().renderTo(document.body);
+new Samples.Zen().mount(document.body);
 
-new Samples.DataBinders().renderTo(document.body);
+new Samples.DataBinders().mount(document.body);
+
+
+var arr = new Botex.MutableArray();
+new Samples.MutableArray({value: arr}).mount(document.body);
+Bricks.DOM.on(document, 'click', function() {
+    arr.push(Math.round(Math.random() * 1e5));
+});

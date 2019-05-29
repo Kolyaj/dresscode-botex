@@ -8,18 +8,19 @@ Samples.Number = Bricks.inherit(Botex.Widget, {
         this._tid = null;
     },
 
-    renderTo: function() {
-        Samples.Number.superclass.renderTo.apply(this, arguments);
+    mount: function() {
+        Samples.Number.superclass.mount.apply(this, arguments);
         var num = this._getParams().number;
         this._tid = setInterval(function() {
             console.log(num);
         }, 1000);
     },
 
-    destroy: function() {
+    unmount: function() {
+        Samples.Number.superclass.unmount.apply(this, arguments);
         clearInterval(this._tid);
-        Samples.Number.superclass.destroy.apply(this, arguments);
     },
+
 
     _render: function($) {
         return {
