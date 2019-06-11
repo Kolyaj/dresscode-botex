@@ -215,7 +215,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
@@ -247,7 +247,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
@@ -361,7 +361,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('mod', 'click', this._getParams().callback);
                     },
 
@@ -390,7 +390,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('mod', 'click', this._getParams().callback);
                     },
 
@@ -419,7 +419,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('elem', 'click', this._getParams().callback);
                     },
 
@@ -452,7 +452,7 @@
 
                     constructor: function() {
                         Widget.superclass.constructor.apply(this, arguments);
-                        this._touched = new Botex.Mutable(false);
+                        this._touched = new Quantum.Quant(false);
                         this._on('child', 'event', this._getParams().callback);
                     },
 

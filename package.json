@@ -2,8 +2,9 @@
     "name": "botex",
     "version": "0.0.0",
     "dependencies": {
-        "dresscode-bricks": "^0.2.2",
-        "dresscode-ponyfills": "^1.0.1",
+        "dresscode-bricks": "latest",
+        "dresscode-ponyfills": "latest",
+        "dresscode-quantum": "latest",
         "dresscodejs": "^1.0.5",
         "fs-extra": "^7.0.1"
     },

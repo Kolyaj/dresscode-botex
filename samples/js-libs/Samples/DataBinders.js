@@ -14,7 +14,7 @@ Samples.DataBinders = Bricks.inherit(Botex.Widget, {
     constructor: function() {
         Samples.DataBinders.superclass.constructor.apply(this, arguments);
         this._counter = 0;
-        this._mutableCounter = new Botex.Mutable(this._counter);
+        this._mutableCounter = new Quantum.Quant(this._counter);
         this._on('click', this.$$_onClick);
     },
 
