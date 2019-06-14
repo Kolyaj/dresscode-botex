@@ -4,13 +4,13 @@
     "dependencies": {
         "dresscode-bricks": "latest",
         "dresscode-ponyfills": "latest",
-        "dresscode-quantum": "latest",
+        "dresscode-quantum": "0.0.5",
         "dresscodejs": "^1.0.5",
         "fs-extra": "^7.0.1"
     },
     "devDependencies": {
         "mocha": "^6.1.4",
-        "mock-fs": "^4.9.0"
+        "mock-fs": "^4.10.1"
     },
     "scripts": {
         "test": "mocha test"
