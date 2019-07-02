@@ -36,7 +36,7 @@ if (process.argv[2] === 'compile-css') {
     }).then(() => {
         return botex.compileCSS(dresscode, args[0], params['bundle']).then((result) => {
             if (args[1]) {
-                return fs.ensureFile(args[1], result, 'utf8');
+                return fs.outputFile(args[1], result, 'utf8');
             } else {
                 console.log(result);
             }
