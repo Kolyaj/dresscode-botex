@@ -15,5 +15,7 @@
     "scripts": {
         "test": "mocha test"
     },
-    "bin": "bin/index.js"
+    "bin": {
+        "botex": "bin/index.js"
+    }
 }
