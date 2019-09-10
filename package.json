@@ -14,5 +14,6 @@
     },
     "scripts": {
         "test": "mocha test"
-    }
+    },
+    "bin": "bin/index.js"
 }
