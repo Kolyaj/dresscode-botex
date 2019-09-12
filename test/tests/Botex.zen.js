@@ -61,5 +61,9 @@
         it('content is params', function() {
             chai.assert.equal(Botex.zen('span.foo.bar[a=1][b=2][c]', {tagName: 'i', className: 'baz', attrs: {d: 5}, content: 'hello'}), '<i a="1" b="2" c="c" d="5" class="foo bar baz">hello</i>');
         });
+
+        it('meta[content=width=device-width]', function() {
+            chai.assert.equal(Botex.zen('meta[content=width=device-width]'), '<meta content="width=device-width"/>')
+        });
     });
 })();
