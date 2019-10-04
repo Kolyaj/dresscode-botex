@@ -27,5 +27,8 @@
         it('style', function() {
             chai.assert.equal(new Botex.Tag({style: {'margin-top': '5px', 'font-size': '2px'}}), '<div style="margin-top:5px;font-size:2px;"></div>')
         });
+        it('empty value in style', function() {
+            chai.expect(String(new Botex.Tag({style: {'width': null, 'height': undefined}}))).to.equal('<div></div>');
+        });
     });
 })();
