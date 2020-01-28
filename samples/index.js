@@ -20,3 +20,5 @@ new Samples.MutableArray({value: arr}).mount(document.body);
 Bricks.DOM.on(document, 'click', function() {
     arr.push(Math.round(Math.random() * 1e5));
 });
+
+new Samples.SVG().mount(document.body);
