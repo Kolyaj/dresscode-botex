@@ -22,3 +22,9 @@ Bricks.DOM.on(document, 'click', function() {
 });
 
 new Samples.SVG().mount(document.body);
+
+var image = new Image();
+image.src = 'data:image/gif;base64,R0lGODlhFAAMAKIFAGbMZjNmMwCZMzNmzDOZ/////wAAAAAAACH5BAEAAAUALAAAAAAUAAwAAAMuWLoaHizK8uC89eKnl/gCM4zDBYYLWU6nSJqgOzJADXQKoRP2je88G64A7A2BCQA7';
+new Botex.Widget({
+    content: image
+}).mount(document.body);
