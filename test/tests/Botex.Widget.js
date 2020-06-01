@@ -74,6 +74,27 @@
             chai.assert.instanceOf(child.getValue(), Child);
         });
 
+        it('Элемент в кванте ._getEl() исчезает при исчезании из DOM', function() {
+            var touched = new Quantum.Quant(false);
+            var Widget = Bricks.inherit(Botex.Widget, {
+                _render: function() {
+                    return {
+                        content: Botex.ifNot(touched, function() {
+                            return Botex.zen('.child');
+                        })
+                    };
+                }
+            });
+            var widget = new Widget();
+            widget.mount(document.body);
+            var child = widget._getEl('child');
+            chai.assert.notEqual(child.getValue(), null);
+            touched.setValue(true);
+            chai.assert.equal(child.getValue(), null);
+            touched.setValue(false);
+            chai.assert.notEqual(child.getValue(), null);
+        });
+
         describe('Declarative event listeners', function() {
             function createEventTest(widgetCtor) {
                 var callback = sinon.spy();
