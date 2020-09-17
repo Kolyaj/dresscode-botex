@@ -21,6 +21,10 @@ Bricks.DOM.on(document, 'click', function() {
     arr.push(Math.round(Math.random() * 1e5));
 });
 
+
+new Samples.Textbox().mount(document.body);
+
+
 new Samples.SVG().mount(document.body);
 
 var image = new Image();
