@@ -5,16 +5,19 @@ Samples.MutableArray = Bricks.inherit(Botex.Widget, {
 
     _render: function($) {
         return {
-            content: $.value.transform(function(item) {
-                if (item % 2) {
-                    return new Botex.Widget({
-                        tagName: 'b',
-                        content: item
-                    });
-                } else {
-                    return Botex.zen('i', item);
-                }
-            }, this)
+            content: [
+                'Нажмите s, чтобы убрать чётные числа',
+                $.value.transform(function(item) {
+                    if (item % 2) {
+                        return new Botex.Widget({
+                            tagName: 'b',
+                            content: [' ', item]
+                        });
+                    } else {
+                        return Botex.zen('i', [' ', item]);
+                    }
+                }, this)
+            ]
         };
     }
 });

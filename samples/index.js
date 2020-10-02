@@ -20,6 +20,13 @@ new Samples.MutableArray({value: arr}).mount(document.body);
 Bricks.DOM.on(document, 'click', function() {
     arr.push(Math.round(Math.random() * 1e5));
 });
+Bricks.DOM.on(document, 'keydown', function(evt) {
+    if (evt.keyCode === 83) {
+        arr.filter(function(num) {
+            return num % 2;
+        })
+    }
+})
 
 
 new Samples.Textbox().mount(document.body);
