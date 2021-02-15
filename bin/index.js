@@ -51,5 +51,5 @@ if (process.argv[2] === 'compile-css') {
     });
 
 
-    botex.compileCSS(process.argv[3]).then(console.log).catch(console.error);
+    botex.compileCSS(dresscode, process.argv[3]).then(console.log).catch(console.error);
 }
