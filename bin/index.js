@@ -49,7 +49,4 @@ if (process.argv[2] === 'compile-css') {
         console.error(err.stack);
         process.exit(1);
     });
-
-
-    botex.compileCSS(dresscode, process.argv[3]).then(console.log).catch(console.error);
 }
