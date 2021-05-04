@@ -65,5 +65,20 @@
         it('meta[content=width=device-width]', function() {
             chai.assert.equal(Botex.zen('meta[content=width=device-width]'), '<meta content="width=device-width"/>')
         });
+
+        it('custom constructor', function() {
+            var Span = Bricks.inherit(Botex.Tag, {
+                _render: function() {
+                    return {
+                        tagName: 'span',
+                        className: 'span',
+                        attrs: {
+                            span: 'span'
+                        }
+                    };
+                }
+            });
+            chai.assert.equal(Botex.zen(Span, '.foo[a=1]', 'content'), '<span a="1" span="span" class="foo span">content</span>');
+        });
     });
 })();
