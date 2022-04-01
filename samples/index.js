@@ -15,15 +15,19 @@ new Samples.Zen().mount(document.body);
 new Samples.DataBinders().mount(document.body);
 
 
-var arr = new Botex.MutableArray();
+var arr = new Quantum.Array();
 new Samples.MutableArray({value: arr}).mount(document.body);
 Bricks.DOM.on(document, 'click', function() {
     arr.push(Math.round(Math.random() * 1e5));
 });
+Bricks.DOM.on(document, 'contextmenu', function(evt) {
+    Bricks.Event.stop(evt);
+    arr.unshift(Math.round(Math.random() * 1e5));
+});
 Bricks.DOM.on(document, 'keydown', function(evt) {
     if (evt.keyCode === 83) {
-        arr.filter(function(num) {
-            return num % 2;
+        arr.remove(function(num) {
+            return num % 2 === 0;
         })
     }
 })
