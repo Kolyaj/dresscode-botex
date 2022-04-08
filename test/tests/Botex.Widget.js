@@ -118,6 +118,27 @@
             chai.assert.notEqual(child.getValue(), null);
         });
 
+        it('className из вложенных массивов', function() {
+            var widget = new Botex.Widget({
+                className: ['foo', ['bar', 'baz']]
+            });
+            widget.mount(document.body);
+            chai.assert.equal(widget.getEl().getValue().className, ' foo bar baz');
+        });
+
+        it('Квант в className возвращает массив', function() {
+            var quant = new Quantum.Quant(false);
+            var widget = new Botex.Widget({
+                className: quant.when(function(value) {
+                    return value ? ['foo1', ['foo2', 'foo3']] : ['bar1', ['bar2', 'bar3']];
+                })
+            });
+            widget.mount(document.body);
+            chai.assert.equal(widget.getEl().getValue().className, ' bar1 bar2 bar3');
+            quant.setValue(true);
+            chai.assert.equal(widget.getEl().getValue().className, 'foo1 foo2 foo3');
+        });
+
         describe('Declarative event listeners', function() {
             function createEventTest(widgetCtor) {
                 var callback = sinon.spy();

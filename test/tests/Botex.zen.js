@@ -80,5 +80,13 @@
             });
             chai.assert.equal(Botex.zen(Span, '.foo[a=1]', 'content'), '<span a="1" span="span" class="foo span">content</span>');
         });
+
+        it('nested class names', function() {
+            chai.assert.equal(Botex.zen('.foo', {className: ['bar', ['baz', 'bazz']]}), '<div class="foo bar baz bazz"></div>');
+        });
+
+        it('class name in quanted array', function() {
+            chai.assert.equal(Botex.zen('.foo', {className: [new Quantum.Quant(['bar', new Quantum.Quant(['baz', 'taz'])])]}), '<div class="foo bar baz taz"></div>');
+        });
     });
 })();
