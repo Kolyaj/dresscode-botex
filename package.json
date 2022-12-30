@@ -9,7 +9,7 @@
         "fs-extra": "^7.0.1"
     },
     "devDependencies": {
-        "mocha": "^6.1.4",
+        "mocha": "^10.2.0",
         "mock-fs": "^4.10.1"
     },
     "scripts": {
