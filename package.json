@@ -1,6 +1,6 @@
 {
     "name": "dresscode-botex",
-    "version": "0.0.28",
+    "version": "0.0.29",
     "dependencies": {
         "dresscode-bricks": ">=0.2.10",
         "dresscode-ponyfills": ">=1.0.2",
