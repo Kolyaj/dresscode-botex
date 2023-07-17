@@ -90,5 +90,34 @@
             });
             chai.assert.equal(new T2({o: {c: 3}}), '123');
         });
+
+        it('custom accumulative param', function() {
+            var T1 = Bricks.inherit(Botex.Template, {
+                params: {
+                    s: 1
+                },
+                accumParams: {
+                    s: function(s, x) {
+                        return (s || 0) + x;
+                    }
+                },
+                _render: function($) {
+                    return {
+                        content: $.s
+                    };
+                }
+            });
+            var T2 = Bricks.inherit(T1, {
+                params: {
+                    s: 2
+                },
+                _render: function() {
+                    return {
+                        s: 3
+                    };
+                }
+            });
+            chai.assert.equal(new T2({s: 4}), '10');
+        });
     });
 })();
