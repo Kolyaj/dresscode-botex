@@ -2,9 +2,9 @@
     "name": "dresscode-botex",
     "version": "0.0.29",
     "dependencies": {
-        "dresscode-bricks": ">=0.2.10",
+        "dresscode-bricks": ">=0.2.13",
         "dresscode-ponyfills": ">=1.0.2",
-        "dresscode-quantum": ">=0.0.14",
+        "dresscode-quantum": ">=0.0.15",
         "dresscodejs": "2.0.5",
         "fs-extra": "^7.0.1"
     },

@@ -688,6 +688,37 @@
                 });
                 createEventTest(Widget);
             });
+
+            it('Вешаем обработчик на параметр виджета', function() {
+                var Widget = Bricks.inherit(Botex.Widget, {
+                    params: {
+                        object: null,
+                        callback: null
+                    },
+
+                    _render: function($) {
+                        this._on($.object, 'action', $.callback);
+                    }
+                });
+
+                var o = new Bricks.Observer();
+                var callback = sinon.spy();
+                var w = new Widget({object: o, callback: callback});
+                o._fireEvent('action');
+                chai.assert.isOk(callback.notCalled);
+                w.mount(document.body);
+                o._fireEvent('action');
+                chai.assert.isOk(callback.calledOnce);
+                w.unmount();
+                o._fireEvent('action');
+                chai.assert.isOk(callback.calledOnce);
+                w.mount(document.body);
+                o._fireEvent('action');
+                chai.assert.isOk(callback.calledTwice);
+                w.destroy();
+                o._fireEvent('action');
+                chai.assert.isOk(callback.calledTwice);
+            });
         });
     });
 })();
