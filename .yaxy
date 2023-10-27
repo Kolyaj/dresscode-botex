@@ -1,8 +1,8 @@
 [Botex]
-/^http://botex.tests/(tests|external)/(.*)/ => bin: dresscodejs ~/test/$1/$2
+/^http://botex.tests/(tests|external)/(.*)/ => bin: ~/node_modules/.bin/dresscodejs -i ~/test/$1/$2
     $SetResponseHeader Content-Type: application/javascript; charset=UTF-8
 botex.tests/ => file://~/test/
 
-botex.samples/index.js => bin: dresscodejs ~/samples/index.js -debug
+botex.samples/index.js => bin: ~/node_modules/.bin/dresscodejs -i ~/samples/index.js -debug
     $SetResponseHeader Content-Type: application/javascript; charset=UTF-8
 botex.samples/ => file://~/samples/
