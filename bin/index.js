@@ -13,8 +13,6 @@ var params = {
 process.argv.slice(3).forEach((arg) => {
     if (arg.match(/^--(.+?)=(.*)$/)) {
         params[RegExp.$1] = RegExp.$2;
-    } else if (arg.indexOf('-') === 0) {
-        context[arg.substr(1)] = true;
     } else {
         args.push(arg);
     }
