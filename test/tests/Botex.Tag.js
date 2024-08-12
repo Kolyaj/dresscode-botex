@@ -30,5 +30,14 @@
         it('empty value in style', function() {
             chai.expect(String(new Botex.Tag({style: {'width': null, 'height': undefined}}))).to.equal('<div></div>');
         });
+        it('hasRoot: false, empty content', function() {
+            chai.assert.equal(new Botex.Tag({hasRoot: false}), '');
+        });
+        it('hasRoot: false, simple string content', function() {
+            chai.assert.equal(new Botex.Tag({hasRoot: false, content: 'foo'}), 'foo');
+        });
+        it('hasRoot: false, other tags content', function() {
+            chai.assert.equal(new Botex.Tag({hasRoot: false, content: new Botex.Tag()}), '<div></div>');
+        });
     });
 })();
