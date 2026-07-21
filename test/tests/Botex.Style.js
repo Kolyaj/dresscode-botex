@@ -16,5 +16,8 @@
             };
             chai.assert.equal(new Botex.Style({css: css}).toString().replace(/\s+/g, ' '), '<style type="text/css"> .foo { padding: 0; } .foo .bar { margin: 0; } </style>');
         });
+        it('escaping', function() {
+            chai.assert.equal(new Botex.Style({css: {'html>body::before': {'content': '""'}}}).toString().replace(/\s+/g, ' '), '<style type="text/css"> html>body::before { content: ""; } </style>');
+        })
     });
 })();
