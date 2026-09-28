@@ -12,9 +12,6 @@
         "mocha": "^6.1.4",
         "mock-fs": "^4.10.1"
     },
-    "scripts": {
-        "test": "mocha test"
-    },
     "bin": {
         "botex": "bin/index.js"
     }

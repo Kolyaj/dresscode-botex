@@ -7,8 +7,7 @@ var {DressCode} = require('dresscodejs');
 
 var args = [];
 var params = {
-    'private-dict': '',
-    'bundle': ''
+    'private-dict': ''
 };
 process.argv.slice(3).forEach((arg) => {
     if (arg.match(/^--(.+?)=(.*)$/)) {
@@ -19,7 +18,7 @@ process.argv.slice(3).forEach((arg) => {
 });
 
 if (!args[0]) {
-    console.log('Usage: botex compile-css <input file> <output file> [--bundle=label_name] [--private-dict=path/to/dict.json]');
+    console.log('Usage: botex compile-css <input file> <output file> [--private-dict=path/to/dict.json]');
     process.exit(1);
 }
 
@@ -32,7 +31,7 @@ if (process.argv[2] === 'compile-css') {
             });
         }
     }).then(() => {
-        return botex.compileCSS(dresscode, args[0], params['bundle']).then((result) => {
+        return botex.compileCSS(dresscode, args[0]).then((result) => {
             if (args[1]) {
                 return fs.outputFile(args[1], result, 'utf8');
             } else {
