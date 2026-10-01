@@ -2,3 +2,4 @@
 - [ ] 20260927-5 Botex.Tag: falsy-значения атрибутов молча отбрасываются — lib/Botex/Tag.js — `if (!value) return ''` глотает 0 и '' (например attrs: {tabindex: 0} не рендерится); различать false/undefined (убрать) и 0/'' (рендерить)
 - [ ] 20260927-6 Нет тестов WidgetMutable / WidgetMutableArray и lifecycle-тестов mount/unmount/destroy для Widget — test/tests
 - [ ] 20260927-8 Стили, добавленные Botex.CSS.add уже после mount, появляются в браузере только при следующем Widget.mount — lib/Botex/CSS.js — нет публичного метода форсировать обновление смонтированного `<style id="$$__style">` (сейчас состояние хранится в ad-hoc-проперти `doc.$$__stylesLen`)
+- [ ] 20260929-1 Botex.Style: дефолт `params: {css: {}}` попадает как пустое правило в 'array'-аккумулятор — lib/Botex/Style.js — каждый вывод `<style>` получает ведущую пустую строку (с правилом — `\n\n` перед первым правилом); сделать дефолт `[]`
