@@ -39,5 +39,13 @@
         it('hasRoot: false, other tags content', function() {
             chai.assert.equal(new Botex.Tag({hasRoot: false, content: new Botex.Tag()}), '<div></div>');
         });
+        it('className: кванты развёрнуты на любой глубине', function() {
+            var q = new Quantum.Quant('y');
+            var inner = new Quantum.Quant(['x', q]);
+            chai.assert.equal(new Botex.Tag({className: ['base', inner]}), '<div class="base x y"></div>');
+        });
+        it('className: пустые значения отфильтрованы', function() {
+            chai.assert.equal(new Botex.Tag({className: ['base', null, undefined, '']}), '<div class="base"></div>');
+        });
     });
 })();

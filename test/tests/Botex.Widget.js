@@ -123,7 +123,7 @@
                 className: ['foo', ['bar', 'baz']]
             });
             widget.mount(document.body);
-            chai.assert.equal(widget.getEl().getValue().className, ' foo bar baz');
+            chai.assert.equal(widget.getEl().getValue().className, 'foo bar baz');
         });
 
         it('Квант в className возвращает массив', function() {
@@ -134,9 +134,40 @@
                 })
             });
             widget.mount(document.body);
-            chai.assert.equal(widget.getEl().getValue().className, ' bar1 bar2 bar3');
+            chai.assert.equal(widget.getEl().getValue().className, 'bar1 bar2 bar3');
             quant.setValue(true);
             chai.assert.equal(widget.getEl().getValue().className, 'foo1 foo2 foo3');
+        });
+
+        it('Вложенный квант в className отслеживается live', function() {
+            var q2 = new Quantum.Quant('y');
+            var q1 = new Quantum.Quant(['x', q2]);
+            var widget = new Botex.Widget({
+                className: ['base', q1]
+            });
+            widget.mount(document.body);
+            var el = widget.getEl().getValue();
+            chai.assert.equal(el.className, 'base x y');
+            q2.setValue('z');
+            chai.assert.equal(el.className, 'base x z');
+            q1.setValue(5);
+            chai.assert.equal(el.className, 'base 5');
+            q2.setValue('w');
+            chai.assert.equal(el.className, 'base 5');
+        });
+
+        it('Пустые значения в className не дают токенов', function() {
+            var q = new Quantum.Quant('');
+            var widget = new Botex.Widget({
+                className: ['base', null, '', undefined, q]
+            });
+            widget.mount(document.body);
+            var el = widget.getEl().getValue();
+            chai.assert.equal(el.className, 'base');
+            q.setValue('filled');
+            chai.assert.equal(el.className, 'base filled');
+            q.setValue('');
+            chai.assert.equal(el.className, 'base');
         });
 
         describe('Declarative event listeners', function() {
